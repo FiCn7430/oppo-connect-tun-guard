@@ -1,7 +1,30 @@
 # OPPO 互联 TUN 网卡冲突：原理与工具
 
 > 解决 OPPO 互联创建的 `vgate0` / `utun8` 与代理 TUN（Meta Tunnel 等）争抢路由、导致断网的问题。
-> 用法：双击桌面“OPPO互联”快捷方式（指向 `Start-OppoConnect.vbs`），一个 UAC 拉起客户端；退出后守护自动清理服务与网卡。
+> 双击桌面快捷方式即可启动；退出 OPPO 互联后自动注销服务、卸载网卡。
+
+![platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-blue)
+![powershell](https://img.shields.io/badge/PowerShell-5.1-5391FE)
+![license](https://img.shields.io/badge/license-MIT-green)
+
+## 功能特性
+
+- **一键启动**：`Start-OppoConnect.vbs` 静默提权，只弹一次 UAC，无终端窗口。
+- **自动清理**：客户端完全退出 3 秒后，守护自动停止/注销 OPPO 服务、卸载 `vgate0` / `utun8`、结束 adb 残留。
+- **代理冲突处理**：启动前检测代理 TUN，支持关闭代理、直接共存、先启动再共存、中断四种选择。
+- **ICS 共存脉冲**：用 Windows ICS 强制刷新 NAT/路由，临时让两块虚拟网卡共存，并支持“重试共存”。
+- **运行期监控**：守护持续监控代理 TUN 与 `utun8`，新出现时弹窗提醒。
+- **手动清理**：`Remove-OppoConnectTun.ps1` 支持 Dry-run、服务模式切换、强制删除。
+
+## 快速开始
+
+```powershell
+git clone <你的仓库地址>
+cd oppo-tun-guard
+.\Create-Shortcut.ps1
+```
+
+然后双击桌面“OPPO互联”快捷方式即可。更详细的原理、参数和每个脚本的说明见 [docs/](docs/)。
 
 ---
 
@@ -177,4 +200,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\Remove-OppoConnectTun.ps1
 
 ## License
 
-未指定。如需开源许可证（MIT / Apache-2.0 等），请补充 `LICENSE` 文件。
+[MIT](LICENSE) © 2026 FiCn7430
