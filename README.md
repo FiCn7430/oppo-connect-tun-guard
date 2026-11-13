@@ -20,7 +20,7 @@
 
 ```powershell
 git clone https://github.com/FiCn7430/oppo-connect-tun-guard.git
-cd oppo-tun-guard
+cd oppo-connect-tun-guard
 .\Create-Shortcut.ps1
 ```
 
@@ -177,19 +177,6 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\Remove-OppoConnectTun.ps1
 - `.vbs` 入口在 Win7–Win11 可用，但 VBScript 已被微软列为弃用；若被禁用，可用管理员 PowerShell 直接运行 `Start-OppoConnect.ps1`。
 - 共存方式不稳定，失败时用“重试网卡共存”或手动关闭代理。
 - 日志在 `logs\`，卸载状态快照在 `state\`（仅用于排查，不是服务备份）。
-
----
-
-## 八、实测时间线（2026-11-14）
-
-| 时间 | 事件 |
-| --- | --- |
-| 00:31:50 | 普通双击启动客户端 |
-| 00:31:56 / 00:31:59 | 客户端两次提权 repair 两个服务（事件 7045） |
-| 00:31:57 / 00:32:05 | `vgate0` / `utun8` 重建 |
-| 00:54:02 | 客户端退出，守护开始清理 |
-| 00:54:13 | 两个服务注销 |
-| 00:54:15 / 00:54:16 | `vgate0` / `utun8` 卸载 |
 
 ---
 
