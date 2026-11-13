@@ -19,7 +19,7 @@
 ## 快速开始
 
 ```powershell
-git clone <你的仓库地址>
+git clone https://github.com/FiCn7430/oppo-connect-tun-guard.git
 cd oppo-tun-guard
 .\Create-Shortcut.ps1
 ```
